@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import SearchInput from './SearchInput'
 
 type NavigationItem ={
     name : string,
@@ -22,7 +23,10 @@ export default function NavBar() {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div>
+                 <h1 className='text-black'>RickyAndMorty</h1>   
+              </div>
+              <div className="flex flex-1 items-center justify-end sm:items-stretch sm:justify-end">
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
@@ -43,6 +47,7 @@ export default function NavBar() {
             </div>
         </div>
     </div>
-</div>
+    <SearchInput/>
+  </div>
   )
 }
