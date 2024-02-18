@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import CharacterCard from '@/components/CharacterCard';
+import CharacterCard from '@/components/character/CharacterCard';
 
 
 const fetchData = async (id : any) => {

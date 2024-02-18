@@ -3,7 +3,7 @@
 import { LocationInfoProps } from "@/@types/Api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Card from "./Card";
+import Card from "./character/Card";
 import Link from "next/link";
 import Filter from "./filter/filter";
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
 import Locations from '@/components/Locations';
 
 // Mocking the fetch function
@@ -26,7 +25,6 @@ describe('Locations', () => {
       residents: ['resident3', 'resident4'],
       url: 'url2',
     };
-
     // Mock the fetch function to return mockLocationData
     global.fetch = jest.fn(() =>
       Promise.resolve({

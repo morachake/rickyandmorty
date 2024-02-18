@@ -1,5 +1,5 @@
 import React from 'react';
-import CharacterNote from "@/components/CharacterNote"
+import CharacterNote from "@/components/character/CharacterNote"
 const CharacterCard = ({ character }) => {
   return (
     <div className="max-w-xl p-4 border rounded-lg shadow-md w-full">

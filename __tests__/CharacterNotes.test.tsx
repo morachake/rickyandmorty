@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom'; // Import this for additional matchers
-import CharacterNote from '@/components/CharacterNote';
+import CharacterNote from '@/components/character/CharacterNote';
 
 describe('CharacterNote', () => {
   it('renders without crashing', () => {
