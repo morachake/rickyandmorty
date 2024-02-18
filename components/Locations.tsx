@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import Link from "next/link";
-import SearchInput from "./SearchInput";
 import Filter from "./filter/filter";
 
 interface Location {
@@ -53,7 +52,7 @@ const Locations: React.FC<LocationProps> = ({ locations }) => {
   return (
    <main className="h-full">
     <div className="mt-[2rem] flex justify-center">
-     <Filter name="Location" changeID={setNumber} total={126} />
+     <Filter name="Location" changeID={setNumber} total={300} />
     </div>
     <div className="flex justify-center  ">
       <div className="container flex flex-col gap-[1rem]">
@@ -68,7 +67,6 @@ const Locations: React.FC<LocationProps> = ({ locations }) => {
             <h5 className="text-center text-black">
               Dimension: {dimension === '' ? 'Unknown' : dimension}
             </h5>
-            <div className="flex gap-[1rem] text-black">126 Locations</div>
           </div>
           <div className="">
             <div className="flex items-center justify-center flex-row flex-wrap gap-[1rem]">
