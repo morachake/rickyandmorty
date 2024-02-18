@@ -47,7 +47,6 @@ export default function NavBar() {
             </div>
         </div>
     </div>
-    <SearchInput/>
   </div>
   )
 }

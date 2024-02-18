@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { CardProps } from '@/@types/Api'
+import Link from 'next/link'
 import React from 'react'
 
 const Card = ({ results }: CardProps) => {
@@ -9,77 +10,55 @@ const Card = ({ results }: CardProps) => {
   if (results) {
     display = results.map(x => {
       const { id, name, status, species, gender, origin, location, image } = x
+      console.log("results",results)
       return (
-        <div key={id} className="relative">
-          <div className="flex  gap-[.6rem] bg-white rounded-lg overflow-hidden md:flex-row">
-            <div className="hidden absolute right-[10px] top-1/2 transform -translate-y-1/2 text-[120px] opacity-[.2] md:block">
-              #{id}
-            </div>
-            <div className="overflow-hidden">
-              <img
-                className="w-full h-[220px] object-cover hover:scale-[1.25] transition-[.6s] duration-[.6s] brightness-[.9]"
-                src={image}
-                alt=""
-              />
-            </div>
-            <div className="p-[.5rem] flex flex-col gap-[.5rem]">
-              <div>
-                <div className="text-[16px] md:text-[20px] lg:text-[28px] font-bold">
-                  {name}
+        <Link key={id} href={`/character/${id}`}>
+          <div key={id} className="relative">
+            <div className="flex w-[260px] h-[400px] flex-col bg-white rounded-lg overflow-hidden md:flex-col shadow-md">
+              <div className="overflow-hidden">
+                <img
+                  className="w-full h-[220px] object-cover hover:scale-[1.25] transition-[.6s] duration-[.6s] brightness-[.9]"
+                  src={image}
+                  alt=""
+                />
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                <div>
+                  <div className="text-lg md:text-xl lg:text-2xl font-bold">
+                    {name}
+                  </div>
+                  <div className="flex gap-2">
+                    <div>{gender}</div>
+                    <div>-</div>
+                    <div>{species}</div>
+                  </div>
                 </div>
-                <div className="flex gap-[.2rem]">
-                  <div>{gender}</div>
-                  <div> - </div>
-                  <div>{species}</div>
+                <div className="flex flex-col">
+                  <div className="text-gray-600">Last known location:</div>
+                  <h1 className="text-lg text-black lg:text-xl">{location.name}</h1>
+                </div>
+                <div className="flex flex-col">
+                  <div className="text-gray-600">Origin:</div>
+                  <h1 className="text-lg text-black lg:text-xl">{origin.name}</h1>
                 </div>
               </div>
-              <div className="flex flex-col">
-                <div className="text-[#9E9E9E]">Last know location:</div>
-                <div className="text-[16px] lg:text-[20px]">
-                  {location?.name}
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <div className="text-[#9E9E9E]">Origin:</div>
-                <div className="text-[16px] lg:text-[20px]">{origin?.name}</div>
-              </div>
             </div>
-          </div>
 
-          {(() => {
-            if (status === 'Dead') {
+            {(() => {
+              const statusClasses = getStatusClasses(status);
+
               return (
-                <div className="absolute top-[5px] left-[10px]">
-                  <div className="flex items-center gap-[.5rem]">
-                    <div className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75" />
-                    <div className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
+                <div className={`absolute top-4 left-4 ${statusClasses}`}>
+                  <div className="flex items-center gap-2">
+                    <div className="animate-ping absolute inline-flex h-3 w-3 rounded-full opacity-75"></div>
+                    <div className="relative inline-flex rounded-full h-3 w-3"></div>
                     <div className="text-white">{status}</div>
                   </div>
                 </div>
-              )
-            } else if (status === 'Alive') {
-              return (
-                <div className="absolute top-[5px] left-[10px]">
-                  <div className="flex items-center gap-[.5rem]">
-                    <div className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-green-400 opacity-75" />
-                    <div className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
-                    <div className="text-white">{status}</div>
-                  </div>
-                </div>
-              )
-            } else {
-              return (
-                <div className="absolute top-[5px] left-[10px]">
-                  <div className="flex items-center gap-[.5rem]">
-                    <div className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-gray-400 opacity-75" />
-                    <div className="relative inline-flex rounded-full h-3 w-3 bg-gray-500" />
-                    <div className="text-white">{status}</div>
-                  </div>
-                </div>
-              )
-            }
-          })()}
-        </div>
+              );
+            })()}
+          </div>
+        </Link>
       )
     })
   } else {
@@ -89,4 +68,15 @@ const Card = ({ results }: CardProps) => {
   return <>{display}</>
 }
 
-export default Card
+const getStatusClasses = (status: string) => {
+  switch (status) {
+    case 'Dead':
+      return 'text-red-500';
+    case 'Alive':
+      return 'text-green-500';
+    default:
+      return 'text-gray-500';
+  }
+}
+
+export default Card;

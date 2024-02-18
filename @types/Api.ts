@@ -20,3 +20,9 @@ export type CardProps = {
     image: string
   }[]
 }
+
+export type OptionProps = {
+  name: string
+  changeID: (value: number) => void
+  total: number
+}

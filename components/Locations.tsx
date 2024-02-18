@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import Link from "next/link";
+import SearchInput from "./SearchInput";
+import Filter from "./filter/filter";
 
 interface Location {
   id: number;
@@ -49,24 +51,28 @@ const Locations: React.FC<LocationProps> = ({ locations }) => {
     },[api])
 
   return (
-   <main className="flex justify-center  h-full">
+   <main className="h-full">
+    <div className="mt-[2rem] flex justify-center">
+     <Filter name="Location" changeID={setNumber} total={126} />
+    </div>
+    <div className="flex justify-center  ">
       <div className="container flex flex-col gap-[1rem]">
         <div className="flex flex-col gap-[1rem] pb-[2rem]">
-          <div className="bg-[#F3F4F6] rounded-lg p-[1rem] flex flex-col justify-between items-center gap-[1rem] sm:flex-row">
-            <h1 className="text-center">
-              Location name :{' '}
-              <span className="text-primary">
+          <div className="bg-[#F3F4F6] mt-[2rem] rounded-lg p-[1rem] flex flex-col justify-between items-center gap-[1rem] sm:flex-row">
+            <h1 className="text-center text-black">
+              Location :{' '}
+              <span className="text-primary text-black">
                 {name === '' ? 'Unknown' : name}
               </span>
             </h1>
-            <h5 className="text-center">
+            <h5 className="text-center text-black">
               Dimension: {dimension === '' ? 'Unknown' : dimension}
             </h5>
-            <div className="flex gap-[1rem]">126 Locations</div>
+            <div className="flex gap-[1rem] text-black">126 Locations</div>
           </div>
           <div className="">
-            <div className="flex flex-col gap-[1rem]">
-              <div className="bg-[#F3F4F6] rounded-lg p-[1rem] grid gap-[2rem]">
+            <div className="flex items-center justify-center flex-row flex-wrap gap-[1rem]">
+              {/* <div className="bg-[#F3F4F6] rounded-lg p-[1rem] grid gap-[2rem]"> */}
                 {loading ? (
                   <div className="m-auto">
                     <h1>Loading....</h1>
@@ -74,11 +80,12 @@ const Locations: React.FC<LocationProps> = ({ locations }) => {
                 ) : (
                   <Card results={results} />
                 )}
-              </div>
+              {/* </div> */}
             </div>
           </div>
         </div>
       </div>
+    </div>
     </main>
   );
 };
