@@ -33,7 +33,7 @@ const Locations: React.FC<LocationProps> = ({ locations }) => {
     const api = `https://rickandmortyapi.com/api/location/${number}`
     useEffect(()=>{
         async function fetchData(){
-            setLoading(false)
+            setLoading(true)
             const data = await fetch(api).then(res => res.json())
             setInfo(data)
             setLoading(false)

@@ -35,11 +35,11 @@ const Card = ({ results }: CardProps) => {
                 </div>
                 <div className="flex flex-col">
                   <div className="text-gray-600">Last known location:</div>
-                  <h1 className="text-lg text-black lg:text-xl">{location.name}</h1>
+                 <h1 className="text-lg text-black lg:text-xl">{location && location.name}</h1>
                 </div>
                 <div className="flex flex-col">
                   <div className="text-gray-600">Origin:</div>
-                  <h1 className="text-lg text-black lg:text-xl">{origin.name}</h1>
+                  <h1 className="text-lg text-black lg:text-xl">{origin && origin.name}</h1>
                 </div>
               </div>
             </div>

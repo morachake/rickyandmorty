@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import CharacterCard from '@/components/CharacterCard';
 
 
-const fetchData = async (id) => {
+const fetchData = async (id : any) => {
   try {
     const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
     const data = await response.json();
